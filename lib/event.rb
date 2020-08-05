@@ -36,4 +36,13 @@ class Event
       inventory
     end
   end
+
+  def overstocked_items
+    total_inventory.keys.reduce([]) do |overstocked_items, item|
+      if total_inventory[item][:quantity] > 50 && total_inventory[item][:food_trucks].length > 1
+        overstocked_items << item
+      end
+      overstocked_items
+    end
+  end
 end
