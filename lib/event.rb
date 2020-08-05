@@ -18,4 +18,11 @@ class Event
       truck.check_stock(item) > 0
     end
   end
+
+  def sorted_item_list
+    @food_trucks.reduce([]) do |list, truck|
+      item_names = truck.inventory.keys.map(&:name)
+      list.concat(item_names)
+    end.sort.uniq
+  end
 end
