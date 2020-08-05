@@ -118,4 +118,31 @@ class EventTest < Minitest::Test
 
     assert_equal expected, @event1.overstocked_items
   end
+
+  def test_sell_returns_false_if_not_enough
+    @food_truck1.stock(@item1, 35)
+    @food_truck1.stock(@item2, 7)
+    @food_truck2.stock(@item3, 25)
+    @food_truck3.stock(@item1, 65)
+    @event1.add_food_truck(@food_truck1)
+    @event1.add_food_truck(@food_truck2)
+    @event1.add_food_truck(@food_truck3)
+
+    assert_equal false, @event1.sell(@item1, 110)
+    assert_equal false, @event1.sell(@item2, 30)
+    assert_equal false, @event1.sell(@item3, 30)
+  end
+
+  def test_sell
+    @food_truck1.stock(@item1, 35)
+    @food_truck3.stock(@item1, 65)
+    @event1.add_food_truck(@food_truck1)
+    @event1.add_food_truck(@food_truck3)
+
+    assert_equal true, @event1.sell(@item1, 30)
+    assert_equal 5, @food_truck1.check_stock(@item1)
+    assert_equal true, @event1.sell(@item1, 40)
+    assert_equal 0, @food_truck1.check_stock(@item1)
+    assert_equal 30, @food_truck3.check_stock(@item1)
+  end
 end
