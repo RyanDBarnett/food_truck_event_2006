@@ -12,4 +12,8 @@ class EventTest < Minitest::Test
   def test_it_exists
     assert_instance_of Event, @event1
   end
+
+  def test_name
+    assert_equal 'South Pearl Street Farmers Market', @event1.name
+  end
 end
