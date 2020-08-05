@@ -1,18 +1,3 @@
-pry(main)> require './lib/item'
-#=> true
-
-pry(main)> item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
-#=> #<Item:0x007f9c56740d48...>
-
-pry(main)> item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
-#=> #<Item:0x007f9c565c0ce8...>
-
-pry(main)> item2.name
-#=> "Apple Pie (Slice)"
-
-pry(main)> item2.price
-#=> 2.50
-
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/item'
