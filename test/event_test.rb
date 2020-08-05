@@ -16,4 +16,8 @@ class EventTest < Minitest::Test
   def test_name
     assert_equal 'South Pearl Street Farmers Market', @event1.name
   end
+
+  def test_no_food_trucks_by_default
+    assert_equal [], @event1.food_trucks
+  end
 end
