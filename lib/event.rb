@@ -45,4 +45,21 @@ class Event
       overstocked_items
     end
   end
+
+  def sell(item, quantity)
+    if total_inventory[item][:quantity] > quantity
+      total_inventory[item][:food_trucks].each do |truck|
+        if truck.inventory[item] > quantity
+          truck.inventory[item] -= quantity
+          quantity = 0
+        else
+          quantity -= truck.inventory[item]
+          truck.inventory[item] = 0
+        end
+      end
+      true
+    else
+      false
+    end
+  end
 end
