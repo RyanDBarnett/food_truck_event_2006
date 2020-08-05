@@ -13,4 +13,11 @@ class FoodTruck
     @inventory[item] = 0 if !@inventory[item]
     @inventory[item] += quantity
   end
+
+  def potential_revenue
+    @inventory.keys do |revenue, item|
+      revenue += item.price * @inventory[item].quantity
+      revenue
+    end
+  end
 end
