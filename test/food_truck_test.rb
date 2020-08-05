@@ -41,4 +41,11 @@ class FoodTruckTest < Minitest::Test
     @truck1.stock(@item2, 12)
     assert_equal(12, @truck1.check_stock(@item2))
   end
+
+  def test_potential_revenue
+    @truck1.stock(@item1, 30)
+    assert_equal 112.5, @truck1.potential_revenue
+    @truck1.stock(@item2, 12)
+    assert_equal 142.5, @truck1.potential_revenue
+  end
 end
